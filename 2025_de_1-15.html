@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>今日の天気と服装</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        /* タイトルを角ゴシック（サンセリフ体）、青色に設定 */
+        .weather-title {
+            font-family: "Hiragino Kaku Gothic ProN", "メイリオ", sans-serif;
+            color: blue;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        /* アドバイス表示エリアの共通スタイル */
+        .advice-box {
+            margin-top: 30px;
+            padding: 0 20px; /* 上下は0, 左右に20pxの余白 */
+            border: 1px solid #ccc;
+            display: inline-block;
+            text-align: left;
+            /* ★★ 最初は非表示にしておく ★★ */
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+    <h1 class="weather-title">今日の天気は何？</h1>
+
+    <div>
+        <button id="sunnyBtn">晴れ</button>
+        <button id="cloudyBtn">曇り</button>
+        <button id="rainyBtn">雨</button>
+    </div>
+
+    <div id="result-area">
+        <div id="sunny-advice" class="advice-box">
+            <h3>☀️ 晴れの日のアドバイス</h3>
+            <ul>
+                <li><b>服装：</b>Tシャツや半袖シャツが快適です。日差しが強いので、薄手の羽織るものがあると便利です。</li>
+                <li><b>持ち物：</b>帽子、サングラス、日焼け止めを忘れずに！</li>
+                <li><b>気をつけて！：</b>水分補給をこまめに行い、熱中症に注意しましょう。</li>
+            </ul>
+        </div>
+        <div id="cloudy-advice" class="advice-box">
+            <h3>☁️ 曇りの日のアドバイス</h3>
+            <ul>
+                <li><b>服装：</b>半袖でも過ごせますが、少し肌寒く感じることも。カーディガンなど調整しやすい服装がおすすめです。</li>
+                <li><b>持ち物：</b>念のため、折りたたみ傘があると安心です。</li>
+                <li><b>気をつけて！：</b>曇っていても紫外線は届いています。油断せず対策を！</li>
+            </ul>
+        </div>
+        <div id="rainy-advice" class="advice-box">
+            <h3>☔️ 雨の日のアドバイス</h3>
+            <ul>
+                <li><b>服装：</b>濡れても乾きやすい素材や、少し肌寒いので長袖がおすすめです。足元は防水の靴が良いでしょう。</li>
+                <li><b>持ち物：</b>傘は必須です。撥水性のあるバッグやタオルもあると便利です。</li>
+                <li><b>気をつけて！：</b>足元が滑りやすくなっているので、転ばないように注意してください。</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        // 各ボタンの要素を取得
+        const sunnyBtn = document.getElementById('sunnyBtn');
+        const cloudyBtn = document.getElementById('cloudyBtn');
+        const rainyBtn = document.getElementById('rainyBtn');
+
+        // 各アドバイス表示エリアの要素を取得
+        const sunnyAdvice = document.getElementById('sunny-advice');
+        const cloudyAdvice = document.getElementById('cloudy-advice');
+        const rainyAdvice = document.getElementById('rainy-advice');
+
+        // 表示を切り替えるための関数
+        function showAdvice(targetAdvice) {
+            // 1. まず全てのアドバイスを非表示にする
+            sunnyAdvice.style.display = 'none';
+            cloudyAdvice.style.display = 'none';
+            rainyAdvice.style.display = 'none';
+
+            // 2. クリックされたボタンに対応するアドバイスだけを表示する
+            targetAdvice.style.display = 'inline-block';
+        }
+
+        // 各ボタンがクリックされた時の処理
+        sunnyBtn.addEventListener('click', function() {
+            showAdvice(sunnyAdvice);
+        });
+
+        cloudyBtn.addEventListener('click', function() {
+            showAdvice(cloudyAdvice);
+        });
+
+        rainyBtn.addEventListener('click', function() {
+            showAdvice(rainyAdvice);
+        });
+    </script>
+
+</body>
+</html>
